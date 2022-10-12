@@ -4,6 +4,8 @@ import axios from 'axios';
 import {getFileAndUnzipAll, getZarrStatdata, reshapeZarrStatFormat} from './getFileAndUnzipAll';
 import * as _ from 'lodash';
 import { TabixIndexedFile } from '@gmod/tabix';
+import { slice, openArray } from "zarr";
+
 const RemoteFile = require('generic-filehandle');
 const ALL_READS_RPKM_STAT_POSITION = 8; //Starts from 0.
 const UNIQUE_READS_RPKM_STAT_POSITION = 10; //Starts from 0.
@@ -397,7 +399,6 @@ function storeInLocalStorage(input) {
 
 
 export async function getZarrForHeatmapAll(DATASETS, KEY, SUBFAMILIES) {
-
     try {
         if (DATASETS === undefined || DATASETS.length == 0) { // array empty or does not exist
             throw new Error('Valid DATASETS list was not provided');
@@ -413,23 +414,22 @@ export async function getZarrForHeatmapAll(DATASETS, KEY, SUBFAMILIES) {
         // })
 
         DATASETS.forEach(FILE => {
-            promisesList.push(getZarrStatdata(FILE));
+            promisesList.push(getZarrStatdata(FILE, SUBFAMILIES));
         })
 
         dataFetchedNow = await Promise.all(promisesList);
-        const allDataList = dataFetchedBefore.concat(dataFetchedNow);
-        const dataFormatted = allDataList.map(item => reshapeZarrStatFormat(item));
+        // const allDataList = dataFetchedBefore.concat(dataFetchedNow);
+        // const dataFormatted = allDataList.map(item => reshapeZarrStatFormat(item));
 
         // const dataFilteredForSubfamilies = filterForRequestedRepeats(allDataList, SUBFAMILIES);
         // storeInLocalStorage(dataFilteredForSubfamilies);
 
         let objToReturn = { all: [], unique: [] };
-        dataFormatted.forEach(d => {
+        dataFetchedNow.forEach(d => {
             const { all, unique } = d;
             objToReturn.all.push(all);
             objToReturn.unique.push(unique);
         })
-        // console.log(objToReturn);
         return objToReturn;
 
     } catch(error) {

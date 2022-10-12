@@ -520,6 +520,24 @@
     "@material/theme" "^14.0.0"
     "tslib" "^2.1.0"
 
+"@material/fab@^13.0.0":
+  "integrity" "sha512-qOi+XWEZWUR5T961UjSorgqm5VaanuZtRN3nsrKqHH1p0L8fYRc3qkGIChlaY9p7BcOYMCynXJzT+MfELVrcwA=="
+  "resolved" "https://registry.npmjs.org/@material/fab/-/fab-13.0.0.tgz"
+  "version" "13.0.0"
+  dependencies:
+    "@material/animation" "^13.0.0"
+    "@material/dom" "^13.0.0"
+    "@material/elevation" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@material/ripple" "^13.0.0"
+    "@material/rtl" "^13.0.0"
+    "@material/shape" "^13.0.0"
+    "@material/theme" "^13.0.0"
+    "@material/tokens" "^13.0.0"
+    "@material/touch-target" "^13.0.0"
+    "@material/typography" "^13.0.0"
+    "tslib" "^2.1.0"
+
 "@material/feature-targeting@^13.0.0":
   "integrity" "sha512-QJClfeaA4EMyAxKJy9WR0Nx+/VwSZCkhGLUVBG9NhxqYGfl/LtaeaidrNm32vYEoNZAofN92VD2RwQTRwp/dMQ=="
   "resolved" "https://registry.npmjs.org/@material/feature-targeting/-/feature-targeting-13.0.0.tgz"
@@ -1105,10 +1123,10 @@
     "@smui/ripple" "^6.0.0-beta.16"
     "svelte2tsx" "^0.5.5"
 
-"@smui/common@^6.0.0", "@smui/common@^6.0.0-beta.16", "@smui/common@^6.1.0":
-  "integrity" "sha512-hetelX4vz37P34K7LbLrkf4eYM2uuXN6r7vhO/W6jF4SjH1G6VCeRQLJsza2oNKdbgEEqVkx99xXmSJQuDOd8Q=="
-  "resolved" "https://registry.npmjs.org/@smui/common/-/common-6.1.0.tgz"
-  "version" "6.1.0"
+"@smui/common@^6.0.0", "@smui/common@^6.0.0-beta.16", "@smui/common@^6.1.0", "@smui/common@^6.1.4":
+  "integrity" "sha512-l6c4gJH+qP9HdM9RhTP07Gl8eewVbYWT7QfVSAF+wwji32ndjgZLlP5P2Jl/GmsQOOlDoNB3VPy/o4Z/kab31g=="
+  "resolved" "https://registry.npmjs.org/@smui/common/-/common-6.1.4.tgz"
+  "version" "6.1.4"
   dependencies:
     "@material/dom" "^13.0.0"
     "@tsconfig/svelte" "^3.0.0"
@@ -1147,6 +1165,17 @@
     "@material/dom" "^13.0.0"
     "@material/drawer" "^13.0.0"
     "@smui/common" "^6.1.0"
+    "svelte2tsx" "^0.5.12"
+
+"@smui/fab@^6.1.4":
+  "integrity" "sha512-uwjh2moyu8bDoZBKLYbQXgDkX/FRlK/xseVYJ8jG/qTSxx/juVd9hG8sK7ERB/ru9odexTSobDXdQT6dPwaXDA=="
+  "resolved" "https://registry.npmjs.org/@smui/fab/-/fab-6.1.4.tgz"
+  "version" "6.1.4"
+  dependencies:
+    "@material/fab" "^13.0.0"
+    "@material/feature-targeting" "^13.0.0"
+    "@smui/common" "^6.1.4"
+    "@smui/ripple" "^6.1.4"
     "svelte2tsx" "^0.5.12"
 
 "@smui/floating-label@^6.0.0-beta.16":
@@ -1260,14 +1289,14 @@
     "@smui/floating-label" "^6.0.0-beta.16"
     "svelte2tsx" "^0.5.5"
 
-"@smui/ripple@^6.0.0", "@smui/ripple@^6.0.0-beta.16":
-  "integrity" "sha512-fFJcBcZX5wtTm95xRL92iNfdJ9jk8S/puxODS+7BI+GizVlDeiGE3gmQIPsIXxpmGicWQCobjEAKdCXj37fr4w=="
-  "resolved" "https://registry.npmjs.org/@smui/ripple/-/ripple-6.0.0.tgz"
-  "version" "6.0.0"
+"@smui/ripple@^6.0.0", "@smui/ripple@^6.0.0-beta.16", "@smui/ripple@^6.1.4":
+  "integrity" "sha512-bMyjVE13Mpy8iygQTtxFTPfxJcefAD/4JBDTm3EORhyO16CcSHhHmMuUjP8YxWTPmn+mnWaeNORZ31aJt4tlYw=="
+  "resolved" "https://registry.npmjs.org/@smui/ripple/-/ripple-6.1.4.tgz"
+  "version" "6.1.4"
   dependencies:
     "@material/dom" "^13.0.0"
     "@material/ripple" "^13.0.0"
-    "@smui/common" "^6.0.0"
+    "@smui/common" "^6.1.4"
     "svelte2tsx" "^0.5.12"
 
 "@smui/select@^6.0.0-beta.16":
@@ -4041,7 +4070,7 @@
   "resolved" "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz"
   "version" "1.8.1"
 
-"eventemitter3@^4.0.0":
+"eventemitter3@^4.0.0", "eventemitter3@^4.0.7":
   "integrity" "sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw=="
   "resolved" "https://registry.npmjs.org/eventemitter3/-/eventemitter3-4.0.7.tgz"
   "version" "4.0.7"
@@ -7029,6 +7058,11 @@
   dependencies:
     "is-finite" "^1.0.1"
 
+"numcodecs@^0.2.2":
+  "integrity" "sha512-Y5K8mv80yb4MgVpcElBkUeMZqeE4TrovxRit/dTZvoRl6YkB6WEjY+fiUjGCblITnt3T3fmrDg8yRWu0gOLjhQ=="
+  "resolved" "https://registry.npmjs.org/numcodecs/-/numcodecs-0.2.2.tgz"
+  "version" "0.2.2"
+
 "numeric@^1.2.6":
   "integrity" "sha1-dlsCvvl5iPz4gNTrPza4D6MTNao="
   "resolved" "https://registry.npmjs.org/numeric/-/numeric-1.2.6.tgz"
@@ -7205,12 +7239,25 @@
   dependencies:
     "aggregate-error" "^3.0.0"
 
+"p-queue@^7.1.0":
+  "integrity" "sha512-5fP+yVQ0qp0rEfZoDTlP2c3RYBgxvRsw30qO+VtPPc95lyvSG+x6USSh1TuLB4n96IO6I8/oXQGsTgtna4q2nQ=="
+  "resolved" "https://registry.npmjs.org/p-queue/-/p-queue-7.3.0.tgz"
+  "version" "7.3.0"
+  dependencies:
+    "eventemitter3" "^4.0.7"
+    "p-timeout" "^5.0.2"
+
 "p-retry@^3.0.1":
   "integrity" "sha512-XE6G4+YTTkT2a0UWb2kjZe8xNwf8bIbnqpc/IS/idOBVhyves0mK5OJgeocjx7q5pvX/6m23xuzVPYT1uGM73w=="
   "resolved" "https://registry.npmjs.org/p-retry/-/p-retry-3.0.1.tgz"
   "version" "3.0.1"
   dependencies:
     "retry" "^0.12.0"
+
+"p-timeout@^5.0.2":
+  "integrity" "sha512-auFDyzzzGZZZdHz3BtET9VEz0SE/uMEAx7uWfGPucfzEwwe/xH0iVeZibQmANYE/hp9T2+UUZT5m+BKyrDp3Ew=="
+  "resolved" "https://registry.npmjs.org/p-timeout/-/p-timeout-5.1.0.tgz"
+  "version" "5.1.0"
 
 "p-try@^2.0.0":
   "integrity" "sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ=="
@@ -10700,6 +10747,14 @@
     "ndarray" "^1.0.18"
     "ndarray-ops" "^1.2.2"
     "ndarray-scratch" "^1.2.0"
+
+"zarr@^0.6.0":
+  "integrity" "sha512-WgGe+aFyK6EmTyZcqJ2OFeFQ9fJFuJqeJgM5sKnbap7HJboaI+rBpDp0rPXSTq5ITu/rLEQjZQ2mPlcfYk7DYA=="
+  "resolved" "https://registry.npmjs.org/zarr/-/zarr-0.6.0.tgz"
+  "version" "0.6.0"
+  dependencies:
+    "numcodecs" "^0.2.2"
+    "p-queue" "^7.1.0"
 
 "zero-crossings@^1.0.0":
   "integrity" "sha1-xWK9MRNkPzRDokXRJAa4i2m5qf8="

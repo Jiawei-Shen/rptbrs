@@ -6,8 +6,9 @@
     <div style="width: 100%; height: 100%">
         <img src="./images/Repeat Browser.svg" alt="" class="repeat_browser">
         <img src="./images/Repeat Browser catered 353535 black.svg" alt="" class="text-img">
-        <img src="./images/School_of_Medicine_2linehrz_pos(RGB)1000-01.png" alt="" class="medicine_school">
-        <img src="./images/wanglab.png" alt="" class="lablogo">
+        <a href="https://medicine.wustl.edu/"><img src="./images/School_of_Medicine_2linehrz_pos(RGB)1000-01.png" alt="" class="medicine_school"></a>
+        <a href="https://wang.wustl.edu/"><img src="./images/wanglab.png" alt="" class="lablogo"></a>
+
 <!--        <h1 style="display: inline; color: #e07a5f">WashU Repeat Browser</h1>-->
 <!--        <div align="right" style="display: inline;">-->
 <!--            -->

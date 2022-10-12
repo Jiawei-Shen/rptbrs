@@ -31,8 +31,6 @@
       // dataPromise = getZarrForHeatmapAll(debug_data.files, 'Zarr', repeats);
       let rna_data = data.filter((el) => el.Assay.includes("RNA"));
       let dna_data = data.filter((el) => !el.Assay.includes("RNA"));
-      console.log(dna_data);
-      console.log(rna_data);
       if (!(dna_data === undefined || dna_data.length == 0)){
         dataPromise_dna = getZarrForHeatmapAll(dna_data, 'Zarr', repeats);
         heatmapData_dna = await dataPromise_dna;}

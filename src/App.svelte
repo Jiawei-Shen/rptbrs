@@ -35,11 +35,10 @@
   import _data from "./json/main.json";
   // import defaultData from './json/default_cart_data.json';
   // import defaultData from './json/zarr_default_data.json';
-  import defaultData from './json/zarr_data_0912.json';
+  import defaultData from './json/zarr_data_1012.json';
   import {getZarrParameters} from './api/inputdata';
   import DataTable from './examples/DataTab.svelte'
   import { TabContent, TabPane } from 'sveltestrap';
-
 
   import {Cart} from "./stores/CartStore";
   import DataTab from "./examples/DataTab.svelte";
@@ -64,8 +63,8 @@
   })
 
   onMount(() => {
-    Promise.all(data_test).then(d => Cart.addDataItems(d));
-    // Cart.addDataItems(defaultData.data);
+    // Promise.all(data_test).then(d => Cart.addDataItems(d));
+    Cart.addDataItems(defaultData.data);
     Cart.addRepeats(defaultData.repeats);
     console.log("default", defaultData.data);
   })

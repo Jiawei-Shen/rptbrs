@@ -7,6 +7,7 @@
         Subtitle,
         Scrim,
     } from '@smui/drawer';
+    import Fab from '@smui/fab';
     import Button, { Label, Icon } from '@smui/button';
     import List, { Item, Text, Graphic, Separator, Subheader } from '@smui/list';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
@@ -29,7 +30,7 @@
     let selected_type = 'Files';
     let heatmap_type = 'ALL';
 
-    let open = false;
+    let open = true;
     // let active = 'Inbox';
 
     let combination = undefined;
@@ -87,6 +88,7 @@
 <div class="drawer-container">
     <!-- Don't include fixed={false} if this is a page wide drawer.
           It adds a style for absolute positioning. -->
+
     <Drawer variant="modal" fixed={false} bind:open>
         <Header>
             <Title>Repeat Browser</Title>
@@ -195,9 +197,19 @@
     <Scrim fixed={false} />
     <AppContent class="app-content">
         <main class="main-content">
-            <Button on:click={() => (open = !open)}>
+<!--            <Button on:click={() => (open = !open)}>-->
+<!--                <Label>Menu</Label>-->
+<!--            </Button>-->
+
+            <Button on:click={() => (open = !open)}
+                    variant="unelevated"
+                    class="button-shaped-round"
+                    style="position: fixed; left: 2rem; bottom: 3rem; z-index: 2"
+            >
+                <Icon class="material-icons">menu</Icon>
                 <Label>Menu</Label>
             </Button>
+
             <br />
             {#if active === "Files Selection"}
                 <DataTab {mode}/>
@@ -324,6 +336,11 @@
     </AppContent>
 </div>
 
+
+
+
+
+
 <style>
     /* These classes are only needed because the
       drawer is in a container on the page. */
@@ -350,5 +367,11 @@
         padding: 16px;
         height: 100%;
         box-sizing: border-box;
+    }
+
+    .menu-abs{
+        position:fixed;
+        left:5rem;
+        bottom:5rem;
     }
 </style>

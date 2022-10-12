@@ -1,5 +1,7 @@
 import axios from 'axios';
 import * as url from "url";
+import {openArray} from "zarr";
+
 const fetch = require('node-fetch')
 const zarrRemote = require('zarr-js')(fetch)
 // import pako from 'pako';
@@ -16,26 +18,67 @@ export async function getFileAndUnzipAll(DATASET, KEY, SUBFAMILIES) {
 }
 
 
-export async function getZarrStatdata(FILE) {
+export async function getZarrStatdata(FILE, SUBFAMILIES) {
     const zarr_url = FILE['Zarr'];
+    const id = FILE['id'];
     let chunksizes = [[0, 0], [1, 0], [2, 0]];
     let dataname = 'subfam_stat';
 
-    const zarr_data = await Promise.all(chunksizes.map(
-        (key) =>
-            new Promise((resolve) => {
-                zarrRemote.openGroup(zarr_url, (err, group) => {
-                    group[dataname](key, function(err, array) {
-                        resolve(array.data)
-                    })
-                })
-            })
-        )
-    )
+    const z = await openArray({ store: zarr_url + 'subfam_stat'});
+    const data_test = await z.get(null)
+    const response = await fetch(zarr_url + '\.zattrs');
+    const data = await response.json();
+    const sub_stat_list = data['subfamily_stat'];
 
-    const result = { id: FILE.id, body: zarr_data};
-    //console.log('This is result: ' + result);
-    return result;
+    // let sub_stat_list = await new Promise((resolve => {
+    //     zarrRemote.openGroup(zarr_url, (err, get, metadata) => {
+    //     const subfam_stat_list = metadata['metadata']['.zattrs']['subfamily_stat'];
+    //     resolve(subfam_stat_list)
+    //     // const result = [subfam_stat_list, data_test[0], data_test[1]]
+    //     // console.log(result);
+    //         })
+    //     })
+    // )
+    const obj = {all: {}, unique:{}}
+    let tmp_all = {};
+    let tmp_uniq = {};
+    for(let i=0; i<sub_stat_list.length; i++){
+        tmp_all[sub_stat_list[i]] = data_test['data'][0][i];
+        tmp_uniq[sub_stat_list[i]] = data_test['data'][1][i];
+    }
+    obj.all = {
+        id,
+        ...tmp_all
+    }
+    obj.unique = {
+        id,
+        ...tmp_uniq
+    }
+    // console.log(obj);
+    return obj
+
+
+    // const zarr_data = await Promise.all(chunksizes.map(
+    //     (key) =>
+    //         new Promise((resolve) => {
+    //             console.log('start the promise.');
+    //             zarrRemote.openGroup(zarr_url, (err, group, metadata) => {
+    //
+    //                 group[dataname](key, function(err, array) {
+    //                     console.log(array.data);
+    //                     let d = array.data;
+    //                     console.log(d.indexOf('#subfamily'));
+    //                     resolve(array.data)
+    //                 })
+    //             })
+    //         })
+    //     )
+    // )
+    //
+    // const result = { id: FILE.id, body: zarr_data};
+    // //console.log('This is result: ' + result);
+    // return result;
+
 }
 
 export function reshapeZarrStatFormat(input) {
