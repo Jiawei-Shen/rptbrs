@@ -137,6 +137,10 @@
     keyedTabsActive = iconTabs[2];
   }
 
+  function startBrowse(event){
+    keyedTabsActive = iconTabs[2];
+  }
+
   // function handleModeChange(event) {
   //   if (event.detail) {
   //     console.log('event:' + event.detail)
@@ -241,7 +245,7 @@
 
   <div class="main-body">
     {#if keyedTabsActive.k === 0}
-      <Homepage/>
+      <Homepage bind:browse={keyedTabsActive}/>
 
     <!--{:else if keyedTabsActive.k === 5}-->
     <!--  <DataTab {mode}/>-->

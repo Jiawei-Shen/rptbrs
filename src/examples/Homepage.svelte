@@ -2,12 +2,12 @@
     <img src="./images/welcome.png" class="welcome-image">
 </div>
 
-<div style="text-align: center;margin-bottom: 2rem;margin-top: 2rem">
+<div style="text-align: center;margin-bottom: 2rem;margin-top: 2rem;">
     <img src="./images/washu_mainpage.png" class="mainpage-image">
 </div>
 
-<div class="box">
-    Click outside me!
+<div style="text-align: center;margin-bottom: 2rem;margin-top: 2rem;margin-left: 30%;max-width: 40%">
+    <img on:click={handleclick} style="cursor: pointer" src="./images/start_browsing.png" class="welcome-image">
 </div>
 
 <!--<LayoutGrid>-->
@@ -39,6 +39,15 @@
         Supporting,
         Label,
     } from '@smui/image-list';
+    export let browse;
+
+    function handleclick(event){
+        browse =     {
+            k: 4,
+            icon: "toc",
+            label: "Browser"
+        };
+    }
 </script>
 
 <style>
@@ -73,6 +82,24 @@
         color: var(--mdc-theme-secondary, #333);
     }
 
+    .imgtop {
+        text-align: center;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .imgbottom {
+        text-align: center;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+        position: relative;
+        z-index: 1;
+        top: -12px;
+        left: -12px;
+    }
+
     .mainpage-image{
         max-width: 100%;
         text-align: center;
@@ -86,7 +113,7 @@
     }
 
     .box {
-        --width: 100px;
+        --width: 300px;
         --height: 100px;
         width: var(--width);
         height: var(--height);
