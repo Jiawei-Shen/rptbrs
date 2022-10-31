@@ -13,11 +13,13 @@
   } from "@smui/list";
   import { Cart } from "../stores/CartStore.js";
   import Button from '@smui/button';
-  import { onDestroy } from "svelte";
+  import {onDestroy, onMount} from "svelte";
   import LayoutGrid, { Cell } from '@smui/layout-grid';
   import VirtualList from 'svelte-tiny-virtual-list';
   import IconButton from '@smui/icon-button';
   import Menu, {MenuComponentDev} from '@smui/menu';
+  import fileDownload from 'js-file-download';
+  import { v4 as uuidv4 } from 'uuid';
 
   let selectionIndex = null;
   let selectionTwoLine = "Stephen Hawking";
@@ -25,6 +27,8 @@
   let cartRepeats;
   let menu: MenuComponentDev;
   let mode = 'files';
+  let sessionFile;
+  let UUID;
 
   function ModeChangeExperiments(event){
     if(mode != 'experiments'){
@@ -40,12 +44,30 @@
     }
   }
 
+  function handleSessionDownload(){
+    console.log(sessionFile);
+    fileDownload(sessionFile, `${UUID}_data_repeats.json`);
+  }
+
+  function creaseSessionJson(data, repeats){
+    // console.log(JSON.stringify(data));
+    // const stringData = data.map(d => JSON.stringify(d));
+    // const stringData = data.map(d => JSON.stringify(d));
+  }
+
   const unsubscribe = Cart.subscribe(async store => {
     const { data, repeats } = store;
     cartData = data;
     cartRepeats = repeats;
-    console.log(cartRepeats);
+    sessionFile = `{"data": ${JSON.stringify(data)}, "repeats": ${JSON.stringify(repeats)}}`;
+    console.log(sessionFile);
+    creaseSessionJson(data, repeats);
   });
+
+  onMount(async () => {
+    UUID = uuidv4();
+    console.log(UUID);
+  })
 
   onDestroy(() => {
     unsubscribe();
@@ -225,3 +247,11 @@
   {/if}
 {/each}
 </LayoutGrid>
+
+<hr />
+{#if sessionFile !== undefined}
+  <div style="margin-left: 40%">
+    <Button on:click={handleSessionDownload} variant="raised"> Download Session Json File </Button>
+  </div>
+{/if}
+

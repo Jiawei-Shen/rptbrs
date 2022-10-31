@@ -149,6 +149,7 @@ export const fetchConsensusDatabyZarr = async function (FILE, subfam) {
     const zarr_url = FILE[0].Zarr;
     const fileId = FILE[0].id;
     const mode = FILE[0].Mode;
+    const assay = FILE[0].Assay;
     let return_value;
         // const FILE = DATA.files.filter(file => file.File_accession === dataId);
     // const FILE = $Cart.data.filter(file => file.File_accession === dataId);
@@ -194,6 +195,13 @@ export const fetchConsensusDatabyZarr = async function (FILE, subfam) {
 
         return_value = [{"fileId": fileId + "_signal", "all": signal_all, "unique": signal_unique},
                         {"fileId": fileId + "_control", "all": control_all, "unique": control_unique}];
+    } else if(assay.includes('RNA')){
+        let allPromise = getZarrWig('all_bigwig', subfam, zarr_url, 'RNA');
+        let uniquePromise = getZarrWig('uni_bigwig', subfam, zarr_url, 'RNA');
+
+        let combined = await Promise.all([allPromise, uniquePromise])
+        const [all, unique] = combined;
+        return_value = [{fileId, all, unique}];
     } else {
         let allPromise = getZarrWig('all_bigwig', subfam, zarr_url);
         let uniquePromise = getZarrWig('uni_bigwig', subfam, zarr_url);
@@ -216,7 +224,7 @@ export const fetchConsensusDatabyZarr = async function (FILE, subfam) {
 }
 
 
-async function getZarrWig(wig_type, subfam, zarr_url){
+async function getZarrWig(wig_type, subfam, zarr_url, assay='DNA'){
     let chunk_id;
     let wig_zatrr;
     switch (wig_type){
@@ -260,8 +268,13 @@ async function getZarrWig(wig_type, subfam, zarr_url){
             group[wig_type](chunk_id, function(err, array) {
                 const all_array = array.data;
                 const target_array = all_array.slice(chunksize[1] * subfam_index, chunksize[1] * (subfam_index + 1));
-                const return_value = target_array.filter((element, index, array) => {return element >= 0})
-                resolve(return_value);
+                if (assay === 'RNA'){
+                    const return_value = target_array.filter((element, index, array) => {return element > 0})
+                    resolve(return_value);
+                } else {
+                    const return_value = target_array.filter((element, index, array) => {return element >= 0})
+                    resolve(return_value);
+                }
             })
         })
     })

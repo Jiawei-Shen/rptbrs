@@ -13,18 +13,21 @@
   import FormField from '@smui/form-field';
 
   let menu: MenuComponentDev;
-  let clicked = 'DNA';
+  // let clicked = 'DNA';
   let checked = false;
-  let scale_max = 2;
+  // let scale_max = 2;
 
   let dataPromise_dna, dataPromise_rna;
   let heatmapData_dna, heatmapData_rna;
   let repeatLabels;
   let loaded = false;
+
   
   const unsubscribe = Cart.subscribe(async store => {
     loaded = false;
     const { data, repeats } = store;
+    // const { data, repeats } = localStorage.Cart;
+
     repeatLabels = repeats.map(d => d.name);
     if (data.length > 0 && repeats.length > 0) {
       //dataPromise = getDataForHeatmapAll(data, 'subfamStat', repeats);
@@ -40,6 +43,7 @@
       loaded = true;
     }
   });
+
   onMount(unsubscribe);
 
 </script>
@@ -50,14 +54,14 @@
   {#if loaded}
     <div style="min-width: 100px; display: inline; margin-right: 5%;">
       <Button on:click={() => menu.setOpen(true)}>
-        <Label>Assay Type: {clicked}</Label>
+        <Label>Assay Type: {$Cart.assay}</Label>
       </Button>
       <Menu bind:this={menu}>
         <List>
-          <Item on:SMUI:action={() => (clicked = 'DNA')}>
+          <Item on:SMUI:action={() => (Cart.setAssayDNA())}>
             <Text>DNA</Text>
           </Item>
-          <Item on:SMUI:action={() => (clicked = 'RNA')}>
+          <Item on:SMUI:action={() => (Cart.setAssayRNA())}>
             <Text>RNA</Text>
           </Item>
         </List>
@@ -78,28 +82,33 @@
 
     <div style="margin-top: 1em; margin-left: 36%;display:inline;">
       <span> Scale Bar: </span>
-      <input type=number bind:value={scale_max} min=1 max=10>
-      <input type=range bind:value={scale_max} min=1 max=10>
+      <input type=number bind:value={$Cart.scale} min=1 max=10>
+      <input type=range bind:value={$Cart.scale} min=1 max=10>
     </div>
 
-    {#if clicked == 'DNA' && heatmapData_dna}
+    {#if $Cart.assay == 'DNA' && heatmapData_dna}
       {#if checked}
         <PlotlyHeatmap on:heatmap-click propsData={heatmapData_dna}
-                       repeatLabels={repeatLabels} scaleMax={scale_max} TYPE="unique"/>
+                       repeatLabels={repeatLabels} scaleMax={$Cart.scale} TYPE="unique"/>
       {:else}
         <PlotlyHeatmap on:heatmap-click propsData={heatmapData_dna}
-                       repeatLabels={repeatLabels} scaleMax={scale_max} TYPE="all"/>
+                       repeatLabels={repeatLabels} scaleMax={$Cart.scale} TYPE="all"/>
       {/if}
-    {:else if  clicked == 'RNA' && heatmapData_rna}
+    {:else if  $Cart.assay == 'RNA' && heatmapData_rna}
       {#if checked}
         <PlotlyHeatmap on:heatmap-click propsData={heatmapData_rna}
-                       repeatLabels={repeatLabels} bind:scaleMax={scale_max} TYPE="unique"/>
+                       repeatLabels={repeatLabels} bind:scaleMax={$Cart.scale} TYPE="unique"/>
       {:else}
         <PlotlyHeatmap on:heatmap-click propsData={heatmapData_rna}
-                       repeatLabels={repeatLabels} bind:scaleMax={scale_max} TYPE="all"/>
+                       repeatLabels={repeatLabels} bind:scaleMax={$Cart.scale} TYPE="all"/>
       {/if}
     {:else}
-      <p>Some error has occured!</p>
+      <div style="margin-left: 43%; margin-top: 5%;">
+        <img src="./images/folder_icon.png" alt="empty folder">
+        <p> Empty data. </p>
+        <p>Please Upload {$Cart.assay} data!</p>
+      </div>
+
     {/if}
 
   {/if}

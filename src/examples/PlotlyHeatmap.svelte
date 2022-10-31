@@ -64,9 +64,9 @@
         zmin: 0
       }
     ];
-    console.log(z_filtered, scale_max);
+    // console.log(z_filtered, scale_max);
 
-    Plotly.newPlot('myDiv', data, {responsive: true, margin: { l: 100, b: 80, r: 18, t: 40}});
+    Plotly.newPlot('myDiv', data, {responsive: true, margin: { l: 100, b: 125, r: 18, t: 40}});
 
     myPlot.on('plotly_click', function(data){
       var pts = {};

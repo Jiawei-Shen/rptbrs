@@ -6,11 +6,11 @@
   import {onMount} from 'svelte';
   import Tab, {Icon, Label} from "@smui/tab";
   import TabBar from "@smui/tab-bar";
-  import LayoutGrid, { Cell } from '@smui/layout-grid';
+  import LayoutGrid, {Cell} from '@smui/layout-grid';
   import Button from "@smui/button";
-  import type, { MenuComponentDev } from '@smui/menu';
+  import type, {MenuComponentDev} from '@smui/menu';
   import Menu from '@smui/menu';
-  import List, { Item, Separator, Text } from '@smui/list';
+  import List, {Item, Separator, Text} from '@smui/list';
   import DataCenter from "./DataCenter.svelte";
   import IdeogramExample from "./examples/IdeogramExample.svelte";
   import PackChartRepeats from "./examples/PackChartRepeats.svelte";
@@ -35,16 +35,17 @@
   import _data from "./json/main.json";
   // import defaultData from './json/default_cart_data.json';
   // import defaultData from './json/zarr_default_data.json';
-  import defaultData from './json/zarr_data_1012.json';
+  import defaultData from './json/zarr_data_1027.json';
   import {getZarrParameters} from './api/inputdata';
   import DataTable from './examples/DataTab.svelte'
-  import { TabContent, TabPane } from 'sveltestrap';
+  import {TabContent, TabPane} from 'sveltestrap';
 
   import {Cart} from "./stores/CartStore";
   import DataTab from "./examples/DataTab.svelte";
   import Homepage from "./examples/Homepage.svelte";
   // import ZoomableSunburst from "./examples/ZoomableSunburst.svelte";
   import Zoom_Sunburst from "./examples/Zoom_Sunburst.svelte";
+  import Tutorial from "./ui/Tutorial.svelte";
 
   let dataInStore;
   let repeatsInStore;
@@ -64,10 +65,25 @@
 
   onMount(() => {
     // Promise.all(data_test).then(d => Cart.addDataItems(d));
-    Cart.addDataItems(defaultData.data);
-    Cart.addRepeats(defaultData.repeats);
-    console.log("default", defaultData.data);
+    if (localStorage.Cart && JSON.parse(localStorage.Cart).data.length > 0) {
+      console.log(JSON.parse(localStorage.Cart))
+      let {data, repeats} = JSON.parse(localStorage.Cart)
+      Cart.addDataItems(data);
+      Cart.addRepeats(repeats);
+    } else {
+      Cart.addDataItems(defaultData.data);
+      Cart.addRepeats(defaultData.repeats);
+    }
+    // Cart.addDataItems(defaultData.data);
+    // Cart.addRepeats(defaultData.repeats);
+    // console.log("default", defaultData.data);
   })
+
+  // onMount(() => {
+  //   Cart.addDataItems(defaultData.data);
+  //   Cart.addRepeats(defaultData.repeats);
+  //   console.log("default", defaultData.data);
+  // })
 
   let iconTabs = [
     {
@@ -137,7 +153,7 @@
     keyedTabsActive = iconTabs[2];
   }
 
-  function startBrowse(event){
+  function startBrowse(event) {
     keyedTabsActive = iconTabs[2];
   }
 
@@ -152,15 +168,15 @@
   //   Cart.addDataItems([]);
   // }
 
-  function ModeChangeExperiments(event){
-    if(mode != 'experiments'){
+  function ModeChangeExperiments(event) {
+    if (mode != 'experiments') {
       mode = 'experiments'
       Cart.addDataItems([]);
     }
   }
 
-  function ModeChangeFiles(event){
-    if(mode != 'files'){
+  function ModeChangeFiles(event) {
+    if (mode != 'files') {
       mode = 'files'
       Cart.addDataItems([]);
     }
@@ -434,6 +450,12 @@
   <div class="browser-body">
     {#if keyedTabsActive.k === 4}
       <Browser />
+    {/if}
+  </div>
+
+  <div class="browser-body">
+    {#if keyedTabsActive.k === 7}
+      <Tutorial />
     {/if}
   </div>
 

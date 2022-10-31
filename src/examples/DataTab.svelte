@@ -8,20 +8,8 @@
     import Modal from '../ui/Modal.svelte';
     import PivotTable from '../components/data-view/PivotTable.svelte';
     import _data from "../json/main.json";
-    import List, {
-        Group,
-        Item,
-        Graphic,
-        Meta,
-        Label,
-        Separator,
-        Subheader,
-        Text,
-        PrimaryText,
-        SecondaryText
-    } from "@smui/list";
+    import defaultData from '../json/zarr_data_1027.json';
     import IconButton from '@smui/icon-button';
-    import { Button, Dialog, MaterialApp } from 'svelte-materialify';
     import Button, { Label } from '@smui/button';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
     import VirtualList from 'svelte-tiny-virtual-list';
@@ -30,11 +18,8 @@
     import {onDestroy, onMount} from "svelte";
     import defaultData from "../json/default_cart_data.json";
     import {getZarrParameters} from '../api/inputdata';
-    import {TabixIndexedFile} from "@gmod/tabix";
 
     import type, { MenuComponentDev } from '@smui/menu';
-    import Menu from '@smui/menu';
-    import Button from '@smui/button';
 
     let menu: MenuComponentDev;
     let clicked = 'nothing yet';
@@ -45,6 +30,21 @@
 
     let tmp_url;
     let zarr_url;
+
+    let files;
+
+    // $: if (files) {
+    //     update_data();
+    // }
+
+    async function update_data(){
+        const file = files[0]
+        const json_content = await file.text().then(d => {
+            const {data, repeats} = JSON.parse(d);
+            Cart.addDataItems(data);
+            Cart.addRepeats(repeats);
+        });
+    }
 
     const unsubscribe = Cart.subscribe(async store => {
         const { data, repeats } = store;
@@ -60,9 +60,6 @@
         zarr_url = tmp_url;
         const data_json = await getZarrParameters(zarr_url).then(data => {
             handleClick(data);
-            console.log(data);
-            // Cart.addDataItems([data]);
-            console.log($Cart.data);
             Cart.addDataItems([...new Set([...$Cart.data, data])]);
         });
     }
@@ -87,84 +84,41 @@
     export let mode;
 </script>
 
-<LayoutGrid>
-    <Cell span={12}>
-        <h3 style="color: var(--mdc-theme-secondary, #333);margin-left: 10%">Zarr File Uploading: </h3>
-        <div class="url-input-cell">
-            <div style="width:80%; height:auto; float:left; display:inline; text-align: center">
-                <input bind:value={tmp_url} placeholder="Enter the Zarr URL">
-                <button on:click={setUn}>Upload</button>
-            </div>
-        </div>
-        <hr>
-    </Cell>
+<h3 style="color: var(--mdc-theme-secondary, #333);margin-left: 10%">Zarr File Uploading: </h3>
+<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">
+    <input bind:value={tmp_url} placeholder="Enter the Zarr URL">
+    <button on:click={setUn}>Upload</button>
+    <hr>
+</div>
 
-    <Cell span={12}>
-        <div class="table-cell">
-            <div style="width:80%; height:auto; float:left; display:inline">
-                <Modal>
-                    <h3>File Selection: </h3>
-                    <PivotTable DATA={_data[mode]}/>
-                </Modal>
-            </div>
-        </div>
-    </Cell>
-
-<!--    {#each Array(2) as _unused, _i}-->
-<!--        {#if _i === 0}-->
-<!--            <Cell span={8}>-->
-<!--                <div class="demo-cell">-->
-<!--                    <p> Data: {cartData.length} </p>-->
-<!--                    <VirtualList-->
-<!--                            height={200}-->
-<!--                            width="auto"-->
-<!--                            itemCount={cartData.length}-->
-<!--                            itemSize={50}>-->
-
-<!--                        <div slot="item" let:index let:style {style} class="row">-->
-<!--                <span>-->
-<!--                    <IconButton class="material-icons"-->
-<!--                                on:click={() => Cart.addDataItems($Cart.data.filter(-->
-<!--                            d => d._id !== cartData[index]._id))}>-->
-<!--                    cancel</IconButton>-->
-<!--                    File: {cartData[index].id}-->
-<!--                </span>-->
-<!--                        </div>-->
-<!--                    </VirtualList>-->
-<!--                </div>-->
-<!--            </Cell>-->
-<!--        {/if}-->
-
-<!--        {#if _i === 1}-->
-<!--            <Cell span={4}>-->
-<!--                <div class="demo-cell">-->
-<!--                    <p> Repeats: {cartRepeats.length} </p>-->
-<!--                    <VirtualList-->
-<!--                            height={200}-->
-<!--                            width="auto"-->
-<!--                            itemCount={cartRepeats.length}-->
-<!--                            itemSize={50}>-->
-<!--                        <div slot="item" let:index class="row">-->
-<!--                            <Text>{cartRepeats[cartRepeats.length - 1 - index].name}</Text>-->
-<!--                        </div>-->
-
-<!--                    </VirtualList>-->
-<!--                </div>-->
-<!--            </Cell>-->
-<!--        {/if}-->
-<!--    {/each}-->
-</LayoutGrid>
+<h3 style="color: var(--mdc-theme-secondary, #333);margin-left: 10%">Json Data Uploading: </h3>
+<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">
+    <input
+            bind:files
+            id="many"
+            type="file"
+    />
+    <button on:click={update_data}>Upload</button>
+    <hr>
+</div>
 
 
+<div style="width:80%; margin-left: 10%; margin-right: 10%; display:inline">
+    <Modal>
+        <h3>File Selection: </h3>
+        <PivotTable DATA={_data[mode]}/>
+    </Modal>
+</div>
 
-<!--    <label for="many">Upload multiple files of any type:</label>-->
-<!--    <input-->
-<!--            bind:files={upload_files}-->
-<!--            id="many"-->
-<!--            multiple-->
-<!--            type="file"-->
-<!--    />-->
-
+<div style="margin-left: 35%; margin-right: 35%">
+    <Button on:click={() => {
+        Cart.addDataItems(defaultData.data);
+        Cart.addRepeats(defaultData.repeats);
+    }}
+            touch variant="raised">
+        <Label>Reset datasets and repeats as default</Label>
+    </Button>
+</div>
 
 
 

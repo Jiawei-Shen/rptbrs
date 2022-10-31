@@ -7,7 +7,7 @@
     import {Text} from "@smui/list";
 
     import { Cart } from '../stores/CartStore';
-    import REPEATS from '../json/mm10.subfamilies';
+    import REPEATS from '../json/hg38_subfamily.json';
     import Typeahead from "svelte-typeahead";
 
     let events = [];
@@ -110,7 +110,7 @@
             .selectAll("path")
             .data(root.descendants().slice(1))
             .join("path")
-            .attr("fill", d => { while (d.depth > 1) d = d.parent; console.log(d.data.name); return color(d.data.name); })
+            .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
             .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
             .attr("pointer-events", d => arcVisible(d.current) ? "auto" : "none")
             .attr("d", d => arc(d.current))
