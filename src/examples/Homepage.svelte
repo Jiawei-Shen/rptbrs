@@ -2,12 +2,12 @@
     <img src="./images/welcome.png" class="welcome-image">
 </div>
 
-<div style="text-align: center;margin-bottom: 2rem;margin-top: 2rem;">
-    <img src="./images/washu_mainpage.png" class="mainpage-image">
-</div>
-
 <div style="text-align: center;margin-bottom: 2rem;margin-top: 2rem;margin-left: 30%;max-width: 40%">
     <img on:click={handleclick} style="cursor: pointer" src="./images/start_browsing.png" class="welcome-image">
+</div>
+
+<div style="text-align: center;margin-bottom: 2rem;margin-top: 2rem;">
+    <img src="./images/washu_mainpage.png" class="mainpage-image">
 </div>
 
 <!--<LayoutGrid>-->

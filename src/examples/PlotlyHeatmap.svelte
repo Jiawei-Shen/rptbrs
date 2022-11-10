@@ -31,6 +31,7 @@
     onlyData = extractRequiredDataPoints(propsData, repeatLabels, TYPE);
     console.log(propsData);
     if (onlyData !== undefined) {
+      $Cart.scale = Math.max(...[].concat(...onlyData));
       drawHeatMap(onlyData, repeatLabels, dataLabels, scaleMax);
     }
   })

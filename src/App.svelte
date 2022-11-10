@@ -109,7 +109,7 @@
     {
       k: 4,
       icon: "toc",
-      label: "Browser"
+      label: "Repeat Browser"
     },
     // {
     //   k: 4,
