@@ -13,6 +13,7 @@
   } from "@smui/list";
   import { Cart } from "../stores/CartStore.js";
   import Button from '@smui/button';
+  import Fab, { Label, Icon } from '@smui/fab';
   import {onDestroy, onMount} from "svelte";
   import LayoutGrid, { Cell } from '@smui/layout-grid';
   import VirtualList from 'svelte-tiny-virtual-list';
@@ -75,41 +76,6 @@
 </script>
 
 <style>
-  :global(.demo-list) {
-    max-width: 50%;
-    margin-top: 2rem;
-    margin-right: 10%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .main-body {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    height: 80%;
-    width: 100%;
-  }
-
-  .virtual-list-cell {
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    color: var(--mdc-theme-secondary, #333);
-  }
-
-  :global(.virtual-list-wrapper) {
-    margin: 20px;
-    background: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-    background: #fafafa;
-    font-family: -apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
-    color: #333;
-    -webkit-font-smoothing: antialiased;
-  }
-
   .row {
     padding: 0 20px;
     border-bottom: 1px solid #eee;
@@ -117,19 +83,6 @@
     line-height: 50px;
     font-weight: 500;
     background: #fff;
-  }
-
-  .actions {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    padding: 0 20px;
-    padding-top: 15px;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
   }
 
   .actions label {
@@ -175,10 +128,7 @@
 <!--  </List>-->
 <!--</div>-->
 
-<LayoutGrid>
 
-  <Cell span={10}>
-    <div class="menu-cell">
       <div style="min-width: 100px;">
         <Button on:click={() => menu.setOpen(true)}>
           <Label>Mode Selection (Current: {mode})</Label>
@@ -194,13 +144,10 @@
           </List>
         </Menu>
       </div>
-    </div>
-  </Cell>
 
 {#each Array(2) as _unused, _i}
   {#if _i === 0}
-    <Cell span={6}>
-      <div class="demo-cell">
+
         <span style="margin-left: 2em"> Data: {cartData.length} </span>
         <VirtualList
                 height={200}
@@ -218,13 +165,10 @@
                 </span>
           </div>
         </VirtualList>
-      </div>
-    </Cell>
   {/if}
 
   {#if _i === 1}
-    <Cell span={6}>
-      <div class="demo-cell">
+
         <span style="margin-left: 2em"> Repeats: {cartRepeats.length} </span>
         <VirtualList
                 height={200}
@@ -242,16 +186,20 @@
 <!--            <Text>{cartRepeats[cartRepeats.length - 1 - index].name}</Text>-->
           </div>
         </VirtualList>
-      </div>
-    </Cell>
   {/if}
 {/each}
-</LayoutGrid>
+
 
 <hr />
 {#if sessionFile !== undefined}
-  <div style="margin-left: 40%">
-    <Button on:click={handleSessionDownload} variant="raised"> Download Session Json File </Button>
-  </div>
+    <div style="margin-left: 40%" class="margins">
+        <Fab color="primary" on:click={handleSessionDownload} extended ripple={false}>
+            <Icon class="material-icons">download</Icon>
+            <Label>Download Session Json File</Label>
+        </Fab>
+    </div>
+<!--  <div style="margin-left: 40%">-->
+<!--    <Button on:click={handleSessionDownload} variant="raised"> Download Session Json File </Button>-->
+<!--  </div>-->
 {/if}
 

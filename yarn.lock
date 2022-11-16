@@ -1269,6 +1269,15 @@
     "@smui/common" "^6.0.0-beta.16"
     "svelte2tsx" "^0.5.5"
 
+"@smui/floating-label@^7.0.0-beta.0":
+  "integrity" "sha512-4MYgkcMu0Ya+7ZxdP+2sWqmrIj6w7xlUrNBXrTF6Ae6RZGXuCl9guhPwIpJvRClZrEtai5OMMXvyATVZg19mhA=="
+  "resolved" "https://registry.npmjs.org/@smui/floating-label/-/floating-label-7.0.0-beta.0.tgz"
+  "version" "7.0.0-beta.0"
+  dependencies:
+    "@material/floating-label" "^14.0.0"
+    "@smui/common" "^7.0.0-beta.0"
+    "svelte2tsx" "^0.5.12"
+
 "@smui/form-field@^6.0.0-beta.16":
   "integrity" "sha512-sNzmim4HDM07feYaqRZGy0VwNH6PuerSl6Ha5cxAFaTLN8SIzfNUEJ7iNX1eBImTlrRNHsR6VwUySXX60xUyQA=="
   "resolved" "https://registry.npmjs.org/@smui/form-field/-/form-field-6.0.0-beta.16.tgz"
@@ -1329,6 +1338,15 @@
     "@smui/common" "^6.0.0-beta.16"
     "svelte2tsx" "^0.5.5"
 
+"@smui/line-ripple@^7.0.0-beta.0":
+  "integrity" "sha512-UTwWAoSImeHQ9bsEkUTWrCZjJuPqgaKtz3FQfCETW2An/Liat36YpU0iODY6Y4TsVCaXWCJCkA2gf/VbIdrWUw=="
+  "resolved" "https://registry.npmjs.org/@smui/line-ripple/-/line-ripple-7.0.0-beta.0.tgz"
+  "version" "7.0.0-beta.0"
+  dependencies:
+    "@material/line-ripple" "^14.0.0"
+    "@smui/common" "^7.0.0-beta.0"
+    "svelte2tsx" "^0.5.12"
+
 "@smui/linear-progress@^6.0.0-beta.16":
   "integrity" "sha512-lT8nSoEyCoKS3JBvxOY73hRzEhMO5lbOe51S2EKdTqV3KOaw6MODeoHt7xfo/VOkVAX4eYni1MdS5c8UEZ7MIg=="
   "resolved" "https://registry.npmjs.org/@smui/linear-progress/-/linear-progress-6.0.0-beta.16.tgz"
@@ -1381,6 +1399,16 @@
     "@smui/common" "^6.0.0-beta.16"
     "@smui/floating-label" "^6.0.0-beta.16"
     "svelte2tsx" "^0.5.5"
+
+"@smui/notched-outline@^7.0.0-beta.0":
+  "integrity" "sha512-c5Xu8D9j7xuAWiwehDetATxE4l3gl9GARk89Ea2+EZcJIy3OzuLY+mCCmFpBuuNQwHs/RtHd7vDOI2bbqXep0g=="
+  "resolved" "https://registry.npmjs.org/@smui/notched-outline/-/notched-outline-7.0.0-beta.0.tgz"
+  "version" "7.0.0-beta.0"
+  dependencies:
+    "@material/notched-outline" "^14.0.0"
+    "@smui/common" "^7.0.0-beta.0"
+    "@smui/floating-label" "^7.0.0-beta.0"
+    "svelte2tsx" "^0.5.12"
 
 "@smui/paper@^7.0.0-beta.0":
   "integrity" "sha512-0Zi2zyfCzxydnUHKKW7RDSjKfqkw6cekQ1mXzkm8AscUIeOCgysGuPvRjEmizBe9Uzc4radH8+gToPZejmbWVA=="
@@ -1498,6 +1526,23 @@
     "@smui/ripple" "^6.0.0-beta.16"
     "@smui/tab-indicator" "^6.0.0-beta.16"
     "svelte2tsx" "^0.5.5"
+
+"@smui/textfield@^7.0.0-beta.0":
+  "integrity" "sha512-4GPtEuwUq+i2Nbslea04PxwHKBs6r6q/w/5wI6SsL2SRQoyNWS6mWi5Pt8keGguqeEVj21Yci5wTbQj/cyazgQ=="
+  "resolved" "https://registry.npmjs.org/@smui/textfield/-/textfield-7.0.0-beta.0.tgz"
+  "version" "7.0.0-beta.0"
+  dependencies:
+    "@material/dom" "^14.0.0"
+    "@material/feature-targeting" "^14.0.0"
+    "@material/ripple" "^14.0.0"
+    "@material/rtl" "^14.0.0"
+    "@material/textfield" "^14.0.0"
+    "@smui/common" "^7.0.0-beta.0"
+    "@smui/floating-label" "^7.0.0-beta.0"
+    "@smui/line-ripple" "^7.0.0-beta.0"
+    "@smui/notched-outline" "^7.0.0-beta.0"
+    "@smui/ripple" "^7.0.0-beta.0"
+    "svelte2tsx" "^0.5.12"
 
 "@sveltejs/svelte-virtual-list@^3.0.1":
   "integrity" "sha512-aF9TptS7NKKS7/TqpsxQBSDJ9Q0XBYzBehCeIC5DzdMEgrJZpIYao9LRLnyyo6SVodpapm2B7FE/Lj+FSA5/SQ=="
@@ -2721,6 +2766,11 @@
   "resolved" "https://registry.npmjs.org/clone/-/clone-1.0.4.tgz"
   "version" "1.0.4"
 
+"clsx@^1.1.1":
+  "integrity" "sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg=="
+  "resolved" "https://registry.npmjs.org/clsx/-/clsx-1.2.1.tgz"
+  "version" "1.2.1"
+
 "cn-city@^0.0.1":
   "integrity" "sha512-FVPg90xqOzYluwwj769yM4qCTcLDsdAI/T77DmC5aO5rZQDbZSLk/vOmpMotm3z+W1On+WeGeqFLxpiNqIX43g=="
   "resolved" "https://registry.npmjs.org/cn-city/-/cn-city-0.0.1.tgz"
@@ -3191,6 +3241,11 @@
   dependencies:
     "clap" "^1.0.9"
     "source-map" "^0.5.3"
+
+"csstype@^3.0.10":
+  "integrity" "sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw=="
+  "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.1.1.tgz"
+  "version" "3.1.1"
 
 "cubic-hermite@^1.0.0":
   "integrity" "sha1-hOOy8nKzFFToOTuZu2rtRRaMFOU="
@@ -9636,6 +9691,14 @@
     "triangulate-hypercube" "^1.0.0"
     "zero-crossings" "^1.0.0"
 
+"svelte-body@^1.3.6":
+  "integrity" "sha512-wTGLVlhWJPauViy56AdtJop0fTaEJMqnCadjrlhcIe76R+KrnW+QvHBx69Xots8GaXgds8y+yBAr0cV7YNIeGw=="
+  "resolved" "https://registry.npmjs.org/svelte-body/-/svelte-body-1.3.6.tgz"
+  "version" "1.3.6"
+  dependencies:
+    "clsx" "^1.1.1"
+    "csstype" "^3.0.10"
+
 "svelte-dev-helper@^1.1.9":
   "integrity" "sha1-fRh9tcbNu9ZNdaMvkbiZi94yc8M="
   "resolved" "https://registry.npmjs.org/svelte-dev-helper/-/svelte-dev-helper-1.1.9.tgz"
@@ -9659,6 +9722,13 @@
   "integrity" "sha512-MLtZtdSOHditOdJOYqlB8s7NxIFRbYKXJzij5s9gz5WVbJFVEqdX2TqOleg4wYeMOujtOCm+/x3RP5YGyzRxIQ=="
   "resolved" "https://registry.npmjs.org/svelte-materialify/-/svelte-materialify-0.3.11.tgz"
   "version" "0.3.11"
+
+"svelte-navigator@^3.2.2":
+  "integrity" "sha512-Xio4ohLUG1nQJ+ENNbLphXXu9L189fnI1WGg+2Q3CIMPe8Jm2ipytKQthdBs8t0mN7p3Eb03SE9hq0xZAqwQNQ=="
+  "resolved" "https://registry.npmjs.org/svelte-navigator/-/svelte-navigator-3.2.2.tgz"
+  "version" "3.2.2"
+  dependencies:
+    "svelte2tsx" "^0.1.151"
 
 "svelte-preprocess@^4.10.7":
   "integrity" "sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw=="
@@ -9695,10 +9765,18 @@
   "resolved" "https://registry.npmjs.org/svelte-virtual-list/-/svelte-virtual-list-3.0.1.tgz"
   "version" "3.0.1"
 
-"svelte@^3.23.0", "svelte@^3.24", "svelte@^3.29.0", "svelte@^3.44.0", "svelte@^3.49.0", "svelte@>=3.19.0", "svelte@>=3.29.4", "svelte@>3.0.0":
+"svelte@^3.23.0", "svelte@^3.24", "svelte@^3.29.0", "svelte@^3.44.0", "svelte@^3.49.0", "svelte@>=3.19.0", "svelte@>=3.29.4", "svelte@>3.0.0", "svelte@3.x":
   "integrity" "sha512-+lmjic1pApJWDfPCpUUTc1m8azDqYCG1JN9YEngrx/hUyIcFJo6VZhj0A1Ai0wqoHcEIuQy+e9tk+4uDgdtsFA=="
   "resolved" "https://registry.npmjs.org/svelte/-/svelte-3.49.0.tgz"
   "version" "3.49.0"
+
+"svelte2tsx@^0.1.151":
+  "integrity" "sha512-vzy4YQNYDnoqp2iZPnJy7kpPAY6y121L0HKrSBjU/IWW7DQ6T7RMJed2VVHFmVYm0zAGYMDl9urPc6R4DDUyhg=="
+  "resolved" "https://registry.npmjs.org/svelte2tsx/-/svelte2tsx-0.1.193.tgz"
+  "version" "0.1.193"
+  dependencies:
+    "dedent-js" "^1.0.1"
+    "pascal-case" "^3.1.1"
 
 "svelte2tsx@^0.5.12", "svelte2tsx@^0.5.5":
   "integrity" "sha512-JAwln2Gd6gQk8q/Qz91rk8msSqe4M2ABrku8YeDMsFnrqjPTWLnHYvxlXLAlHE5el1Q8sfExTePHF3xAZPh/mw=="

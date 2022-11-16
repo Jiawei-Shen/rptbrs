@@ -11,6 +11,14 @@
     import defaultData from '../json/zarr_data_1027.json';
     import IconButton from '@smui/icon-button';
     import Button, { Label } from '@smui/button';
+    import Card, {
+        Content,
+        Actions,
+    } from '@smui/card';
+    import Button, { Label } from '@smui/button';
+    import Textfield from '@smui/textfield';
+    import HelperText from '@smui/textfield/helper-text';
+    import IconButton, { Icon } from '@smui/icon-button';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
     import VirtualList from 'svelte-tiny-virtual-list';
 
@@ -28,10 +36,12 @@
     let cartData;
     let cartRepeats;
 
-    let tmp_url;
+    let tmp_url='';
     let zarr_url;
 
     let files;
+
+    let valueA=0;
 
     // $: if (files) {
     //     update_data();
@@ -84,23 +94,71 @@
     export let mode;
 </script>
 
-<h3 style="color: var(--mdc-theme-secondary, #333);margin-left: 10%">Zarr File Uploading: </h3>
-<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">
-    <input bind:value={tmp_url} placeholder="Enter the Zarr URL">
-    <button on:click={setUn}>Upload</button>
-    <hr>
-</div>
+<!--<h3 style="color: var(&#45;&#45;mdc-theme-secondary, #333);margin-left: 10%">Zarr File Uploading: </h3>-->
+<!--<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">-->
+<!--    <input bind:value={tmp_url} placeholder="Enter the Zarr URL">-->
+<!--    <button on:click={setUn}>Upload</button>-->
+<!--    <hr>-->
+<!--</div>-->
 
-<h3 style="color: var(--mdc-theme-secondary, #333);margin-left: 10%">Json Data Uploading: </h3>
-<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">
-    <input
-            bind:files
-            id="many"
-            type="file"
-    />
-    <button on:click={update_data}>Upload</button>
-    <hr>
-</div>
+<LayoutGrid>
+        <Cell span={6}>
+                <Card style="height: 25vh;">
+                    <Content>
+                        Zarr File Uploading:
+                    </Content>
+                    <Textfield
+                            class="shaped-outlined"
+                            style="width: 50%;margin-left: 10%;"
+                            variant="outlined"
+                            bind:value={tmp_url}
+                            label="URL"
+                    >
+                        <HelperText style="margin-left: 10%;" slot="helper">Enter the Zarr URL.</HelperText>
+                    </Textfield>
+
+                    <Actions fullBleed>
+                        <Button on:click={setUn}>
+                            <Label>Upload</Label>
+                            <i class="material-icons" aria-hidden="true">arrow_forward</i>
+                        </Button>
+                    </Actions>
+                </Card>
+        </Cell>
+
+        <Cell span={6}>
+            <Card style="height: 25vh;">
+                <Content>
+                    Json Data Uploading:
+                </Content>
+                <input style="width: 50%; margin-left: 10%;height: 10vh;"
+                        bind:files
+                        id="many"
+                        type="file"
+                />
+
+                <Actions fullBleed>
+                    <Button on:click={update_data}>
+                        <Label>Upload</Label>
+                        <i class="material-icons" aria-hidden="true">arrow_forward</i>
+                    </Button>
+                </Actions>
+            </Card>
+        </Cell>
+</LayoutGrid>
+
+
+
+<!--<h3 style="color: var(&#45;&#45;mdc-theme-secondary, #333);margin-left: 10%">Json Data Uploading: </h3>-->
+<!--<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">-->
+<!--    <input-->
+<!--            bind:files-->
+<!--            id="many"-->
+<!--            type="file"-->
+<!--    />-->
+<!--    <button on:click={update_data}>Upload</button>-->
+<!--    <hr>-->
+<!--</div>-->
 
 
 <div style="width:80%; margin-left: 10%; margin-right: 10%; display:inline">
