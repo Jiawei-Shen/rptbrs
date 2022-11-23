@@ -5801,6 +5801,11 @@
   dependencies:
     "binary-search-bounds" "^2.0.0"
 
+"intro.js@^6.0.0":
+  "integrity" "sha512-ZUiR6BoLSvPSlLG0boewnWVgji1fE1gBvP/pyw5pgCKXEDQz1mMeUxarggClPNs71UTq364LwSk9zxz17A9gaQ=="
+  "resolved" "https://registry.npmjs.org/intro.js/-/intro.js-6.0.0.tgz"
+  "version" "6.0.0"
+
 "invert-permutation@^1.0.0":
   "integrity" "sha1-oKeAQurbNrwXVR54fv0UOa3VSTM="
   "resolved" "https://registry.npmjs.org/invert-permutation/-/invert-permutation-1.0.0.tgz"
@@ -6266,6 +6271,11 @@
     "@types/node" "*"
     "merge-stream" "^2.0.0"
     "supports-color" "^8.0.0"
+
+"jquery@^3.6.1":
+  "integrity" "sha512-opJeO4nCucVnsjiXOE+/PcCgYw9Gwpvs/a6B1LL/lQhwWwpbVEVYDZ1FokFr8PRc7ghYlrFPuyHuiiDNTQxmcw=="
+  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.1.tgz"
+  "version" "3.6.1"
 
 "js-base64@^2.1.9", "js-base64@^2.4.3":
   "integrity" "sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ=="
@@ -9742,6 +9752,13 @@
     "sorcery" "^0.10.0"
     "strip-indent" "^3.0.0"
 
+"svelte-routing@^1.6.0":
+  "integrity" "sha512-+DbrSGttLA6lan7oWFz1MjyGabdn3tPRqn8Osyc471ut2UgCrzM5x1qViNMc2gahOP6fKbKK1aNtZMJEQP2vHQ=="
+  "resolved" "https://registry.npmjs.org/svelte-routing/-/svelte-routing-1.6.0.tgz"
+  "version" "1.6.0"
+  dependencies:
+    "svelte2tsx" "^0.1.157"
+
 "svelte-search@^1.1.0":
   "integrity" "sha512-e5hci9fZPMXb3fuRZvcYJGqh448M8vV3biY4lN4Nr9fqrG/HBnTjWYstKb399aUe9tsBxRbxRAWgtKicisL23g=="
   "resolved" "https://registry.npmjs.org/svelte-search/-/svelte-search-1.1.0.tgz"
@@ -9751,6 +9768,11 @@
   "integrity" "sha512-xg9ckb8UeeIme4/5qlwCrl2QNmUZ8SCQYZn3Ji83cUsoASqRNy3KWjpmNmzYvPDqCHSZjruBBsoB7t5hwuzw5g=="
   "resolved" "https://registry.npmjs.org/svelte-tiny-virtual-list/-/svelte-tiny-virtual-list-2.0.5.tgz"
   "version" "2.0.5"
+
+"svelte-tour@^1.0.7":
+  "integrity" "sha512-XXjteBRmlS0EZnoT76oWSH4R9viT39luihi++XmXWpQBu/Ng9qiw4Xd+fP1/dDKfZxWB2SfrYCXyThoDpRsr4g=="
+  "resolved" "https://registry.npmjs.org/svelte-tour/-/svelte-tour-1.0.7.tgz"
+  "version" "1.0.7"
 
 "svelte-typeahead@^4.2.4":
   "integrity" "sha512-5UB3GJWbldPlJCbjWOj9s/+2K6GusvxJBgjG7nqbmuIbDYgaWyNfbAWPnch5/fylC+Z7LeUBFDJMp4nOGAZ4Tg=="
@@ -9765,12 +9787,20 @@
   "resolved" "https://registry.npmjs.org/svelte-virtual-list/-/svelte-virtual-list-3.0.1.tgz"
   "version" "3.0.1"
 
-"svelte@^3.23.0", "svelte@^3.24", "svelte@^3.29.0", "svelte@^3.44.0", "svelte@^3.49.0", "svelte@>=3.19.0", "svelte@>=3.29.4", "svelte@>3.0.0", "svelte@3.x":
+"svelte@^3.20.x", "svelte@^3.23.0", "svelte@^3.24", "svelte@^3.29.0", "svelte@^3.44.0", "svelte@^3.49.0", "svelte@>=3.19.0", "svelte@>=3.29.4", "svelte@>3.0.0", "svelte@3.x":
   "integrity" "sha512-+lmjic1pApJWDfPCpUUTc1m8azDqYCG1JN9YEngrx/hUyIcFJo6VZhj0A1Ai0wqoHcEIuQy+e9tk+4uDgdtsFA=="
   "resolved" "https://registry.npmjs.org/svelte/-/svelte-3.49.0.tgz"
   "version" "3.49.0"
 
 "svelte2tsx@^0.1.151":
+  "integrity" "sha512-vzy4YQNYDnoqp2iZPnJy7kpPAY6y121L0HKrSBjU/IWW7DQ6T7RMJed2VVHFmVYm0zAGYMDl9urPc6R4DDUyhg=="
+  "resolved" "https://registry.npmjs.org/svelte2tsx/-/svelte2tsx-0.1.193.tgz"
+  "version" "0.1.193"
+  dependencies:
+    "dedent-js" "^1.0.1"
+    "pascal-case" "^3.1.1"
+
+"svelte2tsx@^0.1.157":
   "integrity" "sha512-vzy4YQNYDnoqp2iZPnJy7kpPAY6y121L0HKrSBjU/IWW7DQ6T7RMJed2VVHFmVYm0zAGYMDl9urPc6R4DDUyhg=="
   "resolved" "https://registry.npmjs.org/svelte2tsx/-/svelte2tsx-0.1.193.tgz"
   "version" "0.1.193"

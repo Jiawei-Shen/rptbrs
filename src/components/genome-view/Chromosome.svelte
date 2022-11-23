@@ -76,13 +76,14 @@
 
   function createChromosomeBody() {
         
-        d3.select(node).selectAll(".chrBand").remove(); // flush clean
+      d3.select(node).selectAll(".chrBand").remove(); // flush clean
 
       let div = d3.select(tooltip)
           .style("opacity", 0)
           .attr("class", "tooltip")
-          .style("background-color", "white")
+          // .style("background-color", "lightsteelblue")
           .style("border", "solid")
+          .style("width", "140px")
           .style("border-width", "2px")
           .style("border-radius", "5px")
           .style("padding", "5px")
@@ -110,18 +111,21 @@
             })
 
             .on("mouseover", function(d) {
+                console.log( d3.event.pageX + "px", d3.event.pageY + "px")
+
                 d3.select(this)
                     .attr("width", 5)
                     .attr("height", 35);
                 d3.select(this)
                     .style("cursor", "pointer");
+
                 div.transition()		
                     .duration(100)		
-                    .style("opacity", 1);
+                    .style("opacity", 0.8);
                 // div.html("Position : <strong>" + d.start + "</strong><br/>" + "Score : <strong>" + d.RPKM.toFixed(2)) + "</strong>"
-                div.html(`<span style='font-size: 10px;'>Position: ${d.start}<br/>Length: ${d.end - d.start}<br/>Score: ${d.RPKM.toFixed(2)}</span>`)
-                    .style("left", (d3.event.pageX + 25) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                div.html(`<span>Position: ${d.start}<br/>Length: ${d.end - d.start}<br/>Score: ${d.RPKM.toFixed(2)}</span>`)
+                    .style("left", (d3.event.pageX - 250) + "px")
+                    .style("top", (d3.event.pageY - 70) + "px");
                 })					
             .on("mouseout", function(d) {	
                 d3.select(this)
@@ -165,11 +169,12 @@
 
 .tooltip {
     position: absolute;
-    text-align: center;
-    width: 60px;
+    /*text-align: center;*/
+    width: 80px;
     height: 28px;
     padding: 2px;
-    font: 12px sans-serif;
+    font-family: sans-serif;
+    font-size: 12px;
     background: lightsteelblue;
     border: 0px;
     border-radius: 8px;

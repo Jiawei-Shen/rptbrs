@@ -9,6 +9,7 @@
     import PivotTable from '../components/data-view/PivotTable.svelte';
     import _data from "../json/main.json";
     import defaultData from '../json/zarr_data_1027.json';
+    import CardStats from "../components/CardStats.svelte";
     import IconButton from '@smui/icon-button';
     import Button, { Label } from '@smui/button';
     import Card, {
@@ -17,6 +18,7 @@
     } from '@smui/card';
     import Button, { Label } from '@smui/button';
     import Textfield from '@smui/textfield';
+    import Paper, { Title, Content } from '@smui/paper';
     import HelperText from '@smui/textfield/helper-text';
     import IconButton, { Icon } from '@smui/icon-button';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
@@ -53,6 +55,7 @@
             const {data, repeats} = JSON.parse(d);
             Cart.addDataItems(data);
             Cart.addRepeats(repeats);
+            alert(`The files and repeats Updated.`);
         });
     }
 
@@ -94,79 +97,133 @@
     export let mode;
 </script>
 
-<!--<h3 style="color: var(&#45;&#45;mdc-theme-secondary, #333);margin-left: 10%">Zarr File Uploading: </h3>-->
-<!--<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">-->
-<!--    <input bind:value={tmp_url} placeholder="Enter the Zarr URL">-->
-<!--    <button on:click={setUn}>Upload</button>-->
-<!--    <hr>-->
-<!--</div>-->
 
-<LayoutGrid>
-        <Cell span={6}>
-                <Card style="height: 25vh;">
-                    <Content>
-                        Zarr File Uploading:
-                    </Content>
-                    <Textfield
-                            class="shaped-outlined"
-                            style="width: 50%;margin-left: 10%;"
-                            variant="outlined"
-                            bind:value={tmp_url}
-                            label="URL"
-                    >
-                        <HelperText style="margin-left: 10%;" slot="helper">Enter the Zarr URL.</HelperText>
-                    </Textfield>
+<div class="bg-red-500 md:pt-32 pb-32 pt-12">
+    <div class="px-4 md:px-10 mx-auto w-full">
+        <div>
+            <!-- Card stats -->
+            <div class="flex flex-wrap">
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                    <CardStats
+                            statSubtitle="TRAFFIC"
+                            statTitle="350,897"
+                            statArrow="up"
+                            statPercent="3.48"
+                            statPercentColor="text-emerald-500"
+                            statDescripiron="Since last month"
+                            statIconName="far fa-chart-bar"
+                            statIconColor="bg-red-500"
+                    />
+                </div>
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                    <CardStats
+                            statSubtitle="NEW USERS"
+                            statTitle="2,356"
+                            statArrow="down"
+                            statPercent="3.48"
+                            statPercentColor="text-red-500"
+                            statDescripiron="Since last week"
+                            statIconName="fas fa-chart-pie"
+                            statIconColor="bg-orange-500"
+                    />
+                </div>
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                    <CardStats
+                            statSubtitle="SALES"
+                            statTitle="924"
+                            statArrow="down"
+                            statPercent="1.10"
+                            statPercentColor="text-orange-500"
+                            statDescripiron="Since yesterday"
+                            statIconName="fas fa-users"
+                            statIconColor="bg-pink-500"
+                    />
+                </div>
+                <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
+                    <CardStats
+                            statSubtitle="PERFORMANCE"
+                            statTitle="49,65%"
+                            statArrow="up"
+                            statPercent="12"
+                            statPercentColor="text-emerald-500"
+                            statDescripiron="Since last month"
+                            statIconName="fas fa-percent"
+                            statIconColor="bg-emerald-500"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    <Actions fullBleed>
-                        <Button on:click={setUn}>
-                            <Label>Upload</Label>
-                            <i class="material-icons" aria-hidden="true">arrow_forward</i>
-                        </Button>
-                    </Actions>
-                </Card>
-        </Cell>
 
-        <Cell span={6}>
-            <Card style="height: 25vh;">
-                <Content>
-                    Json Data Uploading:
-                </Content>
-                <input style="width: 50%; margin-left: 10%;height: 10vh;"
-                        bind:files
-                        id="many"
-                        type="file"
-                />
+<div style="display: flex;align-items: center;justify-content: center;flex-direction: column;margin-top: -6rem;" id="dataGuidence">
+    <Paper square color="secondary">
+        <Title>Select Files</Title>
+        <Content>
+            By <b>Selecting our prcoessed data</b>, or <b>uploading user processed data(zarr)</b>, or <b>uploading the session json file</b>.
+        </Content>
+    </Paper>
+    <hr>
+</div>
 
-                <Actions fullBleed>
-                    <Button on:click={update_data}>
-                        <Label>Upload</Label>
-                        <i class="material-icons" aria-hidden="true">arrow_forward</i>
-                    </Button>
-                </Actions>
-            </Card>
-        </Cell>
-</LayoutGrid>
-
-
-
-<!--<h3 style="color: var(&#45;&#45;mdc-theme-secondary, #333);margin-left: 10%">Json Data Uploading: </h3>-->
-<!--<div style="margin-left: 30%; margin-right: 30%; display:inline; text-align: center">-->
-<!--    <input-->
-<!--            bind:files-->
-<!--            id="many"-->
-<!--            type="file"-->
-<!--    />-->
-<!--    <button on:click={update_data}>Upload</button>-->
-<!--    <hr>-->
-<!--</div>-->
 
 
 <div style="width:80%; margin-left: 10%; margin-right: 10%; display:inline">
     <Modal>
-        <h3>File Selection: </h3>
+        <h3>Files Selection: </h3>
         <PivotTable DATA={_data[mode]}/>
     </Modal>
 </div>
+
+<hr>
+<h3>Files Upload: </h3>
+<LayoutGrid>
+    <Cell span={6}>
+        <Card style="height: 25vh;">
+            <Content>
+                Zarr File Uploading:
+            </Content>
+            <Textfield
+                    class="shaped-outlined"
+                    style="width: 50%;margin-left: 10%;"
+                    variant="outlined"
+                    bind:value={tmp_url}
+                    label="URL"
+            >
+                <HelperText style="margin-left: 10%;" slot="helper">Enter the Zarr URL.</HelperText>
+            </Textfield>
+
+            <Actions fullBleed>
+                <Button on:click={setUn}>
+                    <Label>Upload</Label>
+                    <i class="material-icons" aria-hidden="true">arrow_forward</i>
+                </Button>
+            </Actions>
+        </Card>
+    </Cell>
+
+    <Cell span={6}>
+        <Card style="height: 25vh;">
+            <Content>
+                Json File Uploading:
+            </Content>
+            <input style="width: 50%; margin-left: 10%;height: 10vh;"
+                   bind:files
+                   id="many"
+                   type="file"
+            />
+
+            <Actions fullBleed>
+                <Button on:click={update_data}>
+                    <Label>Upload</Label>
+                    <i class="material-icons" aria-hidden="true">arrow_forward</i>
+                </Button>
+            </Actions>
+        </Card>
+    </Cell>
+</LayoutGrid>
+<hr>
 
 <div style="margin-left: 35%; margin-right: 35%">
     <Button on:click={() => {
@@ -181,80 +238,17 @@
 
 
 <style>
-    .table-cell {
-        height: 550px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        color: var(--mdc-theme-secondary, #333);
-    }
-
-    .virtual-list-cell {
-        height: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        color: var(--mdc-theme-secondary, #333);
-    }
-
-    .url-input-cell {
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #fff;
-        color: var(--mdc-theme-secondary, #333);
-    }
-
     IconButton{
         float: right;
     }
 
-    .align-right {
-        text-align: right;
-        border: 0;
-    }
 
-    :global(body), :global(html) {
-        height: 100%;
-        margin: 0;
-        background-color: rgb(249, 249, 249);
-    }
+    /*:global(body), :global(html) {*/
+    /*    height: 100%;*/
+    /*    margin: 0;*/
+    /*    background-color: rgb(249, 249, 249);*/
+    /*}*/
 
-    :global(.virtual-list-wrapper) {
-        margin: 20px;
-        background: #fff;
-        border-radius: 2px;
-        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
-        background: #fafafa;
-        font-family: -apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
-        color: #333;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    .row {
-        padding: 0 20px;
-        border-bottom: 1px solid #eee;
-        box-sizing: border-box;
-        line-height: 50px;
-        font-weight: 500;
-        background: #fff;
-    }
-
-    .actions {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        padding: 0 20px;
-        padding-top: 15px;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-        justify-content: space-between;
-    }
 
     .actions label {
         padding: 10px 0;

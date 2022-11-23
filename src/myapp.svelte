@@ -6,7 +6,7 @@
   import {onMount} from 'svelte';
   import Tab, {Icon, Label} from "@smui/tab";
   import TabBar from "@smui/tab-bar";
-  import { Router, Route, Link } from "svelte-navigator"
+  import { Router, Route, Link, navigate} from "svelte-routing"
   import type, {MenuComponentDev} from '@smui/menu';
   import Header from "./ui/header.svelte"
   import Footer from "./ui/footer.svelte"
@@ -121,6 +121,8 @@
     }
   }
 
+  $: if (keyedTabsActive==iconTabs[1]) {navigate('/browser');}
+
 </script>
 
 <style>
@@ -188,11 +190,7 @@
       >
       <Icon class="material-icons">{tab.icon}</Icon>
       <Label>
-      {#if tab.k === 3}
-        <CartIndicator {mode}/>
-      {:else}
         {tab.label}
-      {/if}
       </Label>
     </Tab>
   </TabBar>
@@ -204,11 +202,11 @@
     {/if}
   </div>
 
-  <div class="browser-body">
-    {#if keyedTabsActive.k === 4}
-      <Browser />
-    {/if}
-  </div>
+<!--  <div class="browser-body">-->
+<!--    {#if keyedTabsActive.k === 4}-->
+<!--      <Browser />-->
+<!--    {/if}-->
+<!--  </div>-->
 
   <div class="browser-body">
     {#if keyedTabsActive.k === 7}

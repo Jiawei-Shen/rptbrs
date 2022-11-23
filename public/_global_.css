@@ -66,6 +66,9 @@ button:focus {
 }
 
 /* # user-defined */
+.tour-tour.fade.in{
+  opacity: 1;
+}
 
 .node {
   cursor: pointer;

@@ -7,6 +7,7 @@
   import LinearProgress from "../../ui/LinearProgress.svelte";
   import { Cart } from "../../stores/CartStore";
   import { createSession } from './createSession';
+
   import debug_data from "../../json/subfam_stat_debug.json";
 
 
@@ -101,14 +102,13 @@
   };
 </script>
 
-
 <div>
   {#if sessionFile !== undefined}
     <Button on:click={handleSessionDownload}> Download Region Set </Button>
   {/if}
   {#if loaded}
     <!-- <Slider on:slider-move={handleSliderValue} extent={data.extent} />-->
-    <div class="tooltip" id="genome-tooltip" />
+<!--    <div class="tooltip" id="genome-tooltip" />-->
     <h2> {combination.data} - {combination.repeat} </h2>
     {#each dataToRender as item, i}
       <Chromosome on:genome-click={showModal} key={item.key} chr={item.key} data={item.values} />

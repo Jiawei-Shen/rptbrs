@@ -61,6 +61,7 @@ html,
 body {
   background-color: theme.$surface;
   color: theme.$on-surface;
+  min-height: 150vh;
 }
 
 a {

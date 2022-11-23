@@ -3,7 +3,7 @@
 </script>
 <header>
 
-    <div style="width: 100%; height: 100%">
+    <div style="height: 6.5vh">
         <img src="./images/Repeat Browser.svg" alt="" class="repeat_browser">
         <img src="./images/Repeat Browser catered 353535 black.svg" alt="" class="text-img">
         <a href="https://medicine.wustl.edu/"><img src="./images/School_of_Medicine_2linehrz_pos(RGB)1000-01.png" alt="" class="medicine_school"></a>
@@ -15,11 +15,6 @@
 <!--            -->
 <!--        </div>-->
     </div>
-
-
-
-<!--        <img src="./images/School_of_Medicine.svg" alt="">-->
-<!--        <img src="./wangLabLogo.png" alt="" class="lablogo">-->
 
 
 </header>
@@ -40,29 +35,30 @@
     }
 
     .repeat_browser{
-        width: 11%;
+        width: 6%;
+
         align: left;
         margin-left: 1%;
-        margin-right: 8%;
+        margin-right: 27%;
         display: inline;
     }
 
     .medicine_school{
-        width: 8%;
+        width: 6%;
         text-align: right;
     }
 
 
     .lablogo{
-        width: 10%;
+        width: 9%;
         text-align: right;
 
     }
 
     .text-img{
-        width: 53%;
+        width: 30%;
         text-align: right;
-        margin-right: 7%;
+        margin-right: 20%;
     }
 
 </style>

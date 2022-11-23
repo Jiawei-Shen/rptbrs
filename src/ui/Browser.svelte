@@ -7,9 +7,12 @@
         Subtitle,
         Scrim,
     } from '@smui/drawer';
+    import THeader from "../ui/header.svelte"
+    import Footer from "../ui/footer.svelte"
     import Fab from '@smui/fab';
     import Button, { Label, Icon } from '@smui/button';
     import List, { Item, Text, Graphic, Separator, Subheader } from '@smui/list';
+    import { Router, Route, Link, navigate } from "svelte-routing";
     import LayoutGrid, { Cell } from '@smui/layout-grid';
     import PlotlyHeatmapContainer from "../examples/PlotlyHeatmapContainer.svelte";
     import ConsensusContainer from "../components/consensus/ConsensusContainer.svelte";
@@ -53,11 +56,11 @@
 
     let tabs = [
         {
-            icon: 'access_time',
+            icon: 'input',
             label: 'Input',
         },
         {
-            icon: 'near_me',
+            icon: 'query_stats',
             label: 'Visualization',
         },
     ];
@@ -97,15 +100,26 @@
         open = false;
     }
 
+    export let location;
+
     $: if(tab_active == tabs[0]) {active = 'Files Selection';}
     $: if(tab_active == tabs[1]) {active = 'Heatmap';}
 </script>
 
+
+<THeader />
+<!--tab bar-->
 <div>
     <TabBar {tabs} let:tab bind:active={tab_active}>
         <Tab {tab}>
             <Icon class="material-icons">{tab.icon}</Icon>
-            <Label>{tab.label}</Label>
+            <Label>
+                {#if tab === tabs[0]}
+                    {cartData.length} Files and {cartRepeats.length} Repeats
+                {:else}
+                    {tab.label}
+                {/if}
+            </Label>
         </Tab>
     </TabBar>
 </div>
@@ -116,7 +130,7 @@
     <!-- Don't include fixed={false} if this is a page wide drawer.
           It adds a style for absolute positioning. -->
 
-    <Drawer style="height: 100vh;">
+    <Drawer class="h-screen">
         <Content>
             <List>
                 <Item
@@ -145,6 +159,17 @@
                     <Graphic class="material-icons" aria-hidden="true">pie_chart</Graphic>
                     <Text>Repeats Selection</Text>
                 </Item>
+
+                <Separator />
+
+                <Item
+                        href="javascript:void(0)"
+                        on:click="{() => navigate('/')}"
+                        activated={active === 'Homepage'}
+                >
+                    <Graphic class="material-icons" aria-hidden="true">home</Graphic>
+                    <Text>Homepage</Text>
+                </Item>
             </List>
         </Content>
     </Drawer>
@@ -154,66 +179,27 @@
     <Scrim fixed={false} />
     <AppContent class="app-content">
         <main class="main-content">
-<!--            <Button on:click={() => (open = !open)}-->
-<!--                    variant="unelevated"-->
-<!--                    class="button-shaped-round"-->
-<!--                    style="position: fixed; left: 2rem; bottom: 3rem; z-index: 2"-->
-<!--            >-->
-<!--                <Icon class="material-icons">menu</Icon>-->
-<!--                <Label>Menu</Label>-->
-<!--            </Button>-->
+            <!--            <Button on:click={() => (open = !open)}-->
+            <!--                    variant="unelevated"-->
+            <!--                    class="button-shaped-round"-->
+            <!--                    style="position: fixed; left: 2rem; bottom: 3rem; z-index: 2"-->
+            <!--            >-->
+            <!--                <Icon class="material-icons">menu</Icon>-->
+            <!--                <Label>Menu</Label>-->
+            <!--            </Button>-->
 
             <br />
             {#if active === "Files Selection"}
                 <DataTab {mode}/>
-            {:else if active === "Heatmap"}
-                <div>
-                    <PlotlyHeatmapContainer on:heatmap-click={handleHeatmapClick} />
-                </div>
             {:else if active === "Repeats Selection"}
-                <div class="demo-cell">
-                    <h3>Repeat Selection</h3>
-                    <Zoom_Sunburst/>
-                </div>
+                <Zoom_Sunburst/>
             {:else if active === "Data View" }
                 <CartComponent />
-            {:else if active === "Consensus View"}
-                {#if typeof combination !== "undefined"}
-                    <ConsensusContainer {combination} />
-                    <Button style="display: inline; margin-right: 76%;" on:click={() => {active = "Heatmap"}} touch variant="unelevated">
-                        <Icon class="material-icons">arrow_back</Icon>
-                        <Label>Heatmap</Label>
-                    </Button>
-
-                    <Button style="display: inline;" on:click={() => {active = "Genome View"}} touch variant="unelevated">
-                        <Label>Genome View</Label>
-                        <Icon class="material-icons">arrow_forward</Icon>
-                    </Button>
-                {:else }
-                    <p> Click the Heatmap cell first to select data! <p>
-                {/if}
-
-            {:else if active === "Genome View"}
-                {#if typeof combination !== "undefined"}
-                    <Modal>
-                        <GenomeViewContainer {combination} style="margin-bottom: 5%"/>
-                        <Button style="display: inline; margin-right: 70%;" on:click={() => {active = "Heatmap"}} touch variant="unelevated">
-                            <Icon class="material-icons">arrow_back</Icon>
-                            <Label>Heatmap</Label>
-                        </Button>
-
-                        <Button style="display: inline" on:click={() => {active = "Consensus View"}} touch variant="unelevated">
-                            <Label>Consensus View</Label>
-                            <Icon class="material-icons">arrow_forward</Icon>
-                        </Button>
-                    </Modal>
-                {:else }
-                    <p> Click the Heatmap cell first to select data! <p>
-                {/if}
             {/if}
 
         </main>
     </AppContent>
+
 </div>
 {/if}
 {#if tab_active == tabs[1]}
@@ -250,6 +236,18 @@
                         <Graphic class="material-icons" aria-hidden="true">biotech</Graphic>
                         <Text>Genome View</Text>
                     </Item>
+
+                    <Separator />
+
+                    <Item
+                            href="javascript:void(0)"
+                            on:click="{() => navigate('/')}"
+                            activated={active === 'Homepage'}
+                    >
+                        <Graphic class="material-icons" aria-hidden="true">home</Graphic>
+                        <Text>Homepage</Text>
+                    </Item>
+
                 </List>
             </Content>
         </Drawer>
@@ -260,15 +258,10 @@
         <AppContent class="app-content">
             <main class="main-content">
                 <br />
-                {#if active === "Files Selection"}
-                    <DataTab {mode}/>
-                {:else if active === "Heatmap"}
-                    <PlotlyHeatmapContainer on:heatmap-click={handleHeatmapClick} />
-                {:else if active === "Repeats Selection"}
-                    <h3>Repeat Selection</h3>
-                    <Zoom_Sunburst/>
-                {:else if active === "Data View" }
-                    <CartComponent />
+                {#if active === "Heatmap"}
+                    <div style="margin-top: 10vh">
+                        <PlotlyHeatmapContainer on:heatmap-click={handleHeatmapClick} />
+                    </div>
                 {:else if active === "Consensus View"}
                     {#if typeof combination !== "undefined"}
                         <ConsensusContainer {combination} />
@@ -284,7 +277,6 @@
                     {:else }
                         <p> Click the Heatmap cell first to select data! <p>
                     {/if}
-
                 {:else if active === "Genome View"}
                     {#if typeof combination !== "undefined"}
                         <Modal>
@@ -308,8 +300,7 @@
         </AppContent>
     </div>
 {/if}
-
-
+<Footer />
 
 
 
@@ -320,7 +311,7 @@
     .drawer-container {
         position: relative;
         display: flex;
-        /*height: 100vh;*/
+        height: 200vh;
         max-width: 100%;
         /*border: 1px solid;*/
         /*var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));*/

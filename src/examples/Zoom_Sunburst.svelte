@@ -4,6 +4,7 @@
     import VirtualList from 'svelte-tiny-virtual-list';
     import LayoutGrid, { Cell } from '@smui/layout-grid';
     import IconButton from '@smui/icon-button';
+    import Paper, { Title, Content } from '@smui/paper';
     import {Text} from "@smui/list";
 
     import { Cart } from '../stores/CartStore';
@@ -262,7 +263,6 @@
 
 </script>
 
-
 <style>
     .row {
         padding: 0 20px;
@@ -280,6 +280,16 @@
 
 </style>
 
+<div style="display: flex;align-items: center;justify-content: center;flex-direction: column;">
+    <Paper square color="secondary">
+        <Title>Select Repeats</Title>
+        <Content>
+            By <b>Clicking the diagram</b> (Click twice to choose, click one to zoom in, click the blank middle to zoom out), <br/>
+            or <b>search the repeats in the search bar </b>.
+        </Content>
+    </Paper>
+</div>
+<hr>
 
 <LayoutGrid>
     <Cell span={8}>

@@ -147,15 +147,16 @@
 
 {#each Array(2) as _unused, _i}
   {#if _i === 0}
+      <div class="flex justify-center w-full px-4">
+          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-full px-4">
+              <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">Data: {cartData.length}</h5>
+              <VirtualList
+                      height={200}
+                      width=100%
+                      itemCount={cartData.length}
+                      itemSize={50}>
 
-        <span style="margin-left: 2em"> Data: {cartData.length} </span>
-        <VirtualList
-                height={200}
-                width="auto"
-                itemCount={cartData.length}
-                itemSize={50}>
-
-          <div slot="item" let:index let:style {style} class="row">
+                  <div slot="item" let:index let:style {style} class="row">
                 <span>
                     <IconButton class="material-icons"
                                 on:click={() => Cart.addDataItems($Cart.data.filter(
@@ -163,19 +164,23 @@
                     cancel</IconButton>
                     File: {cartData[index].id}
                 </span>
+                  </div>
+              </VirtualList>
           </div>
-        </VirtualList>
+      </div>
+      <hr>
   {/if}
 
   {#if _i === 1}
-
-        <span style="margin-left: 2em"> Repeats: {cartRepeats.length} </span>
-        <VirtualList
-                height={200}
-                width="auto"
-                itemCount={cartRepeats.length}
-                itemSize={50}>
-          <div slot="item" let:index let:style {style} class="row">
+      <div class="flex justify-center w-full px-4">
+          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-full px-4">
+              <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">Repeats: {cartRepeats.length}</h5>
+              <VirtualList
+                      height={200}
+                      width=100%
+                      itemCount={cartRepeats.length}
+                      itemSize={50}>
+                  <div slot="item" let:index let:style {style} class="row">
             <span>
                 <IconButton class="material-icons"
                             on:click={() =>
@@ -183,9 +188,12 @@
                 cancel</IconButton>
                 Subfamilies: {cartRepeats[cartRepeats.length - 1 - index].name}
             </span>
-<!--            <Text>{cartRepeats[cartRepeats.length - 1 - index].name}</Text>-->
+                      <!--            <Text>{cartRepeats[cartRepeats.length - 1 - index].name}</Text>-->
+                  </div>
+              </VirtualList>
           </div>
-        </VirtualList>
+      </div>
+
   {/if}
 {/each}
 
